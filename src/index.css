@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #5227ff;
+  --color-primary-light: #7c5cff;
+  --color-secondary: #ff9ffc;
+  --color-night: #05050f;
+  --color-night-soft: #0a0a1c;
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
+  --animate-spin-slow: spin 16s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.45;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #05050f;
+  color: #e8e8f5;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(124, 92, 255, 0.55);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #07071a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #5227ff, #ff9ffc);
+  border-radius: 8px;
+}
+
+/* ---------- reusable helpers ---------- */
+
+.text-gradient {
+  background: linear-gradient(92deg, #a78bfa 0%, #ff9ffc 52%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(92deg, #5227ff 0%, #8b5cf6 55%, #ff9ffc 130%);
+  background-size: 150% 100%;
+  box-shadow: 0 10px 32px -8px rgba(124, 92, 255, 0.55);
+  transition: all 0.35s ease;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  background-position: 90% 0;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 44px -8px rgba(124, 92, 255, 0.75);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  color: #e8e8f5;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  transition: all 0.35s ease;
+}
+.btn-ghost:hover {
+  border-color: rgba(255, 159, 252, 0.6);
+  background: rgba(255, 159, 252, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -12px rgba(255, 159, 252, 0.4);
+}
+
+.bg-grid {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.card-glow {
+  position: relative;
+}
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: radial-gradient(560px circle at 50% 0%, rgba(124, 92, 255, 0.16), transparent 55%);
+  pointer-events: none;
+}
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.ring-gradient {
+  position: relative;
+}
+.ring-gradient::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, #5227ff, rgba(255, 159, 252, 0.9), rgba(255, 255, 255, 0.25));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
